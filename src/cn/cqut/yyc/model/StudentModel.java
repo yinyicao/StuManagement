@@ -1,22 +1,37 @@
 package cn.cqut.yyc.model;
 
 /**
- * @ClassName StudentVo
- * @Description TODO
+ * @ClassName StudentModel
+ * @Description 与数据库中的视图对应
  * @Author yinyicao
  * @DateTime 2019/1/4 10:09
  * @Blog http://www.cnblogs.com/hyyq/
  */
 public class StudentModel {
-    private String studentId;//学号
-    private String studentName;//姓名
-    private Integer studentAge;//年龄
-    private String studentGender;//性别
-    private String studentInstitute;//学院
-    private String studentInstitureExplain;//学院描述
-    private Integer studentEnterScore;//入学成绩
-    private String studentPoliticalStatus;//政治面貌
-    private String studentHomeplace;//籍贯
+    private String studentId;
+    private String studentName;
+    private Integer studentAge;
+    private String studentGender;
+    /**
+     * 学院
+     */
+    private String studentInstitute;
+    /**
+     * 学院描述
+     */
+    private String studentInstitureExplain;
+    /**
+     * 入学成绩
+     */
+    private Integer studentEnterScore;
+    /**
+     * 政治面貌
+     */
+    private String studentPoliticalStatus;
+    /**
+     * 籍贯
+     */
+    private String studentHomeplace;
 
     public StudentModel() {
         super();

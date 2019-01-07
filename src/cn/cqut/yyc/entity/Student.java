@@ -7,18 +7,29 @@ package cn.cqut.yyc.entity;
  * @DateTime 2019/1/4 9:12
  * @Blog http://www.cnblogs.com/hyyq/
  */
-
-//是否需要覆写equals和hashcode
 public class Student {
 
-    private String studentId;//学号
-    private String studentName;//姓名
-    private Integer studentAge;//年龄
-    private String studentGender;//性别
-    private Integer studentInstitute;//学院
-    private Integer studentEnterScore;//入学成绩
-    private String studentPoliticalStatus;//政治面貌
-    private String studentHomeplace;//籍贯
+
+    private String studentId;
+    private String studentName;
+    private Integer studentAge;
+    private String studentGender;
+    /**
+     * 学院
+     */
+    private Integer studentInstitute;
+    /**
+     * 入学成绩
+     */
+    private Integer studentEnterScore;
+    /**
+     * 政治面貌
+     */
+    private String studentPoliticalStatus;
+    /**
+     * 籍贯
+     */
+    private String studentHomeplace;
 
     public Student() {
         super();

@@ -24,20 +24,20 @@
 
     <servlet>
         <servlet-name>loginServlet</servlet-name>
-        <servlet-class>cn.cqut.yyc.controller.loginServlet</servlet-class>
+        <servlet-class>cn.cqut.yyc.controller.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>logoutServlet</servlet-name>
-        <servlet-class>cn.cqut.yyc.controller.logoutServlet</servlet-class>
+        <servlet-class>cn.cqut.yyc.controller.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>operationServlet</servlet-name>
-        <servlet-class>cn.cqut.yyc.controller.operationServlet</servlet-class>
+        <servlet-class>cn.cqut.yyc.controller.OperationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>getDataServlet</servlet-name>
-        <servlet-class>cn.cqut.yyc.controller.getDataServlet</servlet-class>
+        <servlet-class>cn.cqut.yyc.controller.GetDataServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getDataServlet</servlet-name>

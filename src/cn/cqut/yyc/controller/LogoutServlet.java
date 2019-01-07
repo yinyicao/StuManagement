@@ -1,7 +1,6 @@
 package cn.cqut.yyc.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +10,21 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class logoutServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+/**
+ * @ClassName LogoutServlet
+ * @Description 注销登录的controller层，注销登陆时调用该接口。
+ * @Author yinyicao
+ * @DateTime 2019/1/4 9:19
+ * @Blog http://www.cnblogs.com/hyyq/
+ */
+public class LogoutServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doGet(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 设置输入的编码格式为utf-8
         request.setCharacterEncoding("utf8");
         // 设置输入的编码格式为utf-8
@@ -26,9 +34,7 @@ public class logoutServlet extends HttpServlet {
 
         // 注销session的值
         request.getSession().invalidate();
-        // 将网页重定向到首页
-//        response.sendRedirect(request.getContextPath() + "/index.html");
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>(2);
         map.put("msg", "注销成功！");
         map.put("code", "1");
 

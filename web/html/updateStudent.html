@@ -13,6 +13,11 @@
             margin-left: 0px;
         }
 
+        input:focus {
+            border-style: solid;
+            box-shadow: 0 0 20px #03a9f4;
+        }
+
         .layui-form-item {
             margin-left: -20px;
             margin-right: 50px;
@@ -110,6 +115,8 @@
         layer = layui.layer;
 
     });
+
+    //下面的两个方法写给TableListenerJs.js调用
 
     function updateStu() {
         //监听提交

@@ -3,7 +3,6 @@ package cn.cqut.yyc.dao;
 import cn.cqut.yyc.entity.Student;
 import cn.cqut.yyc.model.StudentModel;
 import cn.cqut.yyc.utility.DbUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -177,7 +176,6 @@ public class StudentDao {
             conn = DbUtil.getConnection();
             String sql = "select * from view_studentinfo where " + searchName + " like ? limit ?,?";
             ps = conn.prepareStatement(sql);
-//            ps.setString(1,searchName);
             ps.setString(1, "%" + searchContent + "%");
             ps.setInt(2, startNum);
             ps.setInt(3, endNum);
@@ -196,7 +194,7 @@ public class StudentDao {
         Connection conn = null;
         PreparedStatement ps = null;
         int result = 0;
-        ResultSet rs = null;
+        ResultSet rs;
 
         try {
             conn = DbUtil.getConnection();
@@ -219,7 +217,7 @@ public class StudentDao {
         Connection conn = null;
         PreparedStatement ps = null;
         int result = 0;
-        ResultSet rs = null;
+        ResultSet rs;
 
         try {
             conn = DbUtil.getConnection();

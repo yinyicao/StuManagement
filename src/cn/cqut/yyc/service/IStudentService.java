@@ -1,9 +1,7 @@
 package cn.cqut.yyc.service;
 
 import cn.cqut.yyc.model.StudentModel;
-import cn.cqut.yyc.vo.StudentInfoVo;
-import com.fasterxml.jackson.core.JsonProcessingException;
-
+import cn.cqut.yyc.vo.DataInfoVo;
 import java.util.List;
 
 /**
@@ -14,19 +12,64 @@ import java.util.List;
  * @Blog http://www.cnblogs.com/hyyq/
  */
 public interface IStudentService {
-    StudentInfoVo findAllStu() throws JsonProcessingException;
 
-    StudentInfoVo deleteStudentByStuId(String stuId);
+    /**
+     * 根据学号删除一条学生信息
+     *
+     * @param stuId 学号
+     * @return 封装成vo返回
+     **/
+    DataInfoVo deleteStudentByStuId(String stuId);
 
-    StudentInfoVo deleteStudentByStus(List<StudentModel> list);
+    /**
+     * 删除多个学生信息
+     *
+     * @param list 多个学生的List集合
+     * @return 封装成vo返回
+     */
+    DataInfoVo deleteStudentByStus(List<StudentModel> list);
 
-    StudentInfoVo insertStudent(StudentModel stuModel);
+    /**
+     * 插入一条学生信息
+     *
+     * @param stuModel
+     * @return 封装成vo返回
+     */
+    DataInfoVo insertStudent(StudentModel stuModel);
 
-    StudentInfoVo updateStudent(StudentModel stuModel);
+    /**
+     * 更新一条学生信息
+     *
+     * @param stuModel
+     * @return 封装成vo返回
+     */
+    DataInfoVo updateStudent(StudentModel stuModel);
 
-    StudentInfoVo countNumberByStus(List<StudentModel> list);
+    /**
+     * 验证学号是否存在
+     *
+     * @param list 多个学生信息，里面至少有学号字段不为空
+     * @return 封装成vo返回
+     */
+    DataInfoVo studentIdIsExist(List<StudentModel> list);
 
-    StudentInfoVo findStuByPageAndLimit(int page, int limit);
+    /**
+     * 分页查询学生信息
+     *
+     * @param page  第几页
+     * @param limit 每页有多少条
+     * @return 封装成vo返回数据
+     */
+    DataInfoVo findStuByPageAndLimit(int page, int limit);
 
-    StudentInfoVo findStuByPageAndLimitWithSearch(int page, int limit, int searchIndex, String searchContent);
+    /**
+     * 搜索按钮将会触发的方法
+     *
+     * @param page
+     * @param limit
+     * @param searchIndex
+     * @param searchContent
+     * @return 封装成vo返回数据
+     */
+    DataInfoVo findStuByPageAndLimitWithSearch(int page, int limit, int searchIndex, String searchContent);
 }

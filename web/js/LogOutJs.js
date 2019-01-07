@@ -1,29 +1,3 @@
-// $().ready(function () {
-//     $.ajax({
-//         type: "get",
-//         url: "/operationServlet",
-//         data:{
-//
-//         },
-//         beforeSend: function () {
-//
-//         },
-//         success: function (data) {
-//             var json = JSON.parse(data);
-//             alert(data);
-//
-//         },
-//         complete: function (XMLHttpRequest, textStatus) {
-//             // alert("请求完成！");
-//
-//         },
-//
-//         error: function (XMLHttpRequest, textStatus, thrownError) {
-//             alert("请求失败！")
-//         }
-//     });
-// });
-
 
 $("#logout").click(function () {
     $.ajax({

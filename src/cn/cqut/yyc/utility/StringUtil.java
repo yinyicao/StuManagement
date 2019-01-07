@@ -1,9 +1,8 @@
 package cn.cqut.yyc.utility;
 
-import cn.cqut.yyc.vo.StudentInfoVo;
+import cn.cqut.yyc.vo.DataInfoVo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
@@ -19,10 +18,10 @@ import java.io.UnsupportedEncodingException;
  * @Blog http://www.cnblogs.com/hyyq/
  */
 public class StringUtil {
+    private static final String END_OR_START_EQUEL = "\"";
 
     /**
      * 根据传入的object对象，转换成对应的Json字符串
-     *
      * @param object
      * @return json字符串
      * @throws JsonProcessingException
@@ -37,13 +36,12 @@ public class StringUtil {
 
     /**
      * 根据json字符串转Java对象
-     *
      * @param request
      * @return
      * @throws IOException
      * @throws UnsupportedEncodingException
      */
-    public static StudentInfoVo receivePost(HttpServletRequest request) throws IOException, UnsupportedEncodingException {
+    public static DataInfoVo receivePost(HttpServletRequest request) throws IOException, UnsupportedEncodingException {
 
         // 读取请求内容
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));
@@ -56,18 +54,16 @@ public class StringUtil {
         //删除多条数据时json字符串为："{\"msg\": \"deleteData\", \"data\": [{\"studentId\": 12314}]}"
         //需要转为{"msg": "deleteData", "data": [{"studentId": 12314}]}才能被jackson转为对象。
         String str = sb.toString();
-        if (str.startsWith("\"")) {
+        if (str.startsWith(END_OR_START_EQUEL)) {
             str = str.substring(1);
         }
-        if (str.endsWith("\"")) {
+        if (str.endsWith(END_OR_START_EQUEL)) {
             str = str.substring(0, str.length() - 1);
         }
         str = str.replaceAll("\\\\", "");
-//        System.out.println(str);
 
-        //将json字符串转换为java对象
         ObjectMapper mapper = new ObjectMapper();
-        StudentInfoVo studentInfoVo = mapper.readValue(str, StudentInfoVo.class);
+        DataInfoVo studentInfoVo = mapper.readValue(str, DataInfoVo.class);
         return studentInfoVo;
     }
 

@@ -2,12 +2,19 @@ package cn.cqut.yyc.dao;
 
 import cn.cqut.yyc.entity.User;
 import cn.cqut.yyc.utility.DbUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ * @ClassName UserDao
+ * @Description 用户dao层
+ * @Author yinyicao
+ * @DateTime 2019/1/4 9:19
+ * @Blog http://www.cnblogs.com/hyyq/
+ */
 public class UserDao {
+
     public User findUserByNameAndPwd(String name, String pwd, int role) {
         User user = null;
         Connection conn = null;

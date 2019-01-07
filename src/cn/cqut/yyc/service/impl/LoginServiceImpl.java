@@ -22,9 +22,10 @@ public class LoginServiceImpl implements ILoginService {
     @Override
     public boolean checkUserLogin(String username, String password, int role) {
         User user = userDao.findUserByNameAndPwd(username, password, role);
-        if (user != null)
+        if (user != null) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 }

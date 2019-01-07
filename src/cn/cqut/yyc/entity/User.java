@@ -1,5 +1,12 @@
 package cn.cqut.yyc.entity;
 
+/**
+ * @ClassName User
+ * @Description 用户实体层
+ * @Author yinyicao
+ * @DateTime 2019/1/4 9:19
+ * @Blog http://www.cnblogs.com/hyyq/
+ */
 public class User {
     private String name;
     private String pwd;

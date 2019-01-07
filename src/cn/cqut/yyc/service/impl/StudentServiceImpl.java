@@ -4,10 +4,7 @@ import cn.cqut.yyc.dao.StudentDao;
 import cn.cqut.yyc.entity.Student;
 import cn.cqut.yyc.model.StudentModel;
 import cn.cqut.yyc.service.IStudentService;
-import cn.cqut.yyc.vo.StudentInfoVo;
-import com.fasterxml.jackson.core.JsonProcessingException;
-
-import java.util.ArrayList;
+import cn.cqut.yyc.vo.DataInfoVo;
 import java.util.List;
 
 /**
@@ -26,21 +23,10 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public StudentInfoVo findAllStu() throws JsonProcessingException {
-        List<StudentModel> allStudent = stuDao.findAllStudent();
-        if (false == allStudent.isEmpty()) {
-            //由于前端的数据绑定由layui完成，所以这里的code必须为0，msg必须为空
-            return setStuvoByStu(0, "", allStudent.size(), allStudent);
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    public StudentInfoVo deleteStudentByStuId(String stuId) {
+    public DataInfoVo deleteStudentByStuId(String stuId) {
 
         int deleteByStuIdResult = stuDao.deleteByStuId(stuId);
-        StudentInfoVo stuVo;
+        DataInfoVo stuVo;
         if (deleteByStuIdResult > 0) {
             stuVo = setStuvoByStu(200, "成功删除" + deleteByStuIdResult + "条数据！", deleteByStuIdResult, null);
         } else {
@@ -51,10 +37,10 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public StudentInfoVo deleteStudentByStus(List<StudentModel> list) {
+    public DataInfoVo deleteStudentByStus(List<StudentModel> list) {
         int totalDeleteNum = list.size();
         int successDeleteNum = 0;
-        StudentInfoVo stuVo = null;
+        DataInfoVo stuVo = null;
         for (int i = 0; i < totalDeleteNum; i++) {
             stuVo = deleteStudentByStuId(list.get(i).getStudentId());
             successDeleteNum += stuVo.getCount();
@@ -68,8 +54,8 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public StudentInfoVo insertStudent(StudentModel stuModel) {
-        StudentInfoVo stuVo = null;
+    public DataInfoVo insertStudent(StudentModel stuModel) {
+        DataInfoVo stuVo = null;
         if (null != stuModel) {
             int count = stuDao.countByStuId(getStuByModel(stuModel).getStudentId());
             if (count > 0) {
@@ -87,9 +73,9 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public StudentInfoVo updateStudent(StudentModel stuModel) {
+    public DataInfoVo updateStudent(StudentModel stuModel) {
         int updateResult = stuDao.updateStudent(getStuByModel(stuModel));
-        StudentInfoVo stuVo;
+        DataInfoVo stuVo;
         if (updateResult > 0) {
             stuVo = setStuvoByStu(200, "成功更新" + updateResult + "条数据！", null, null);
         } else {
@@ -99,11 +85,11 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public StudentInfoVo countNumberByStus(List<StudentModel> list) {
+    public DataInfoVo studentIdIsExist(List<StudentModel> list) {
 
         int totalNum = list.size();
         int countNum = 0;
-        StudentInfoVo stuVo = null;
+        DataInfoVo stuVo = null;
         for (int i = 0; i < totalNum; i++) {
             int count = stuDao.countByStuId(list.get(i).getStudentId());
             countNum += count;
@@ -117,7 +103,7 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public StudentInfoVo findStuByPageAndLimit(int page, int limit) {
+    public DataInfoVo findStuByPageAndLimit(int page, int limit) {
         List<StudentModel> allStudent;
         int startNum = (page - 1) * limit;
         int endNum = limit;
@@ -132,7 +118,7 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public StudentInfoVo findStuByPageAndLimitWithSearch(int page, int limit, int searchIndex, String searchContent) {
+    public DataInfoVo findStuByPageAndLimitWithSearch(int page, int limit, int searchIndex, String searchContent) {
         List<StudentModel> allStudent;
         String searchName = null;
         int startNum = (page - 1) * limit;
@@ -165,9 +151,10 @@ public class StudentServiceImpl implements IStudentService {
     }
 
 
-    private StudentInfoVo setStuvoByStu(Integer code, String msg, Integer count, List<StudentModel> data) {
-        StudentInfoVo stuVo = new StudentInfoVo();
-        stuVo.setCode(code); //固定为200或500
+    private DataInfoVo setStuvoByStu(Integer code, String msg, Integer count, List<StudentModel> data) {
+        DataInfoVo stuVo = new DataInfoVo();
+        //固定为200或500
+        stuVo.setCode(code);
         stuVo.setMsg(msg);
         stuVo.setCount(count);
         stuVo.setData(data);

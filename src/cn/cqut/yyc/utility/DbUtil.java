@@ -10,7 +10,7 @@ import java.util.Properties;
 
 /**
  * @ClassName DbUtil
- * @Description TODO
+ * @Description 数据库工具类
  * @Author yinyicao
  * @DateTime 2018/12/28 15:33
  * @Blog http://www.cnblogs.com/hyyq/
@@ -23,7 +23,9 @@ public class DbUtil {
     private static String PASSWORD = "";
 
 
-    //从properties文件中获取连接数据库所需的参数
+    /**
+     * 从properties文件中获取连接数据库所需的参数
+     */
     static {
         try {
             Properties prop = new Properties();
@@ -44,7 +46,9 @@ public class DbUtil {
     }
 
 
-    //获取数据库连接
+    /**
+     * 获取数据库连接
+     */
     public static Connection getConnection() {
         Connection conn = null;
         try {
@@ -56,7 +60,9 @@ public class DbUtil {
         return conn;
     }
 
-    //关闭连接
+    /**
+     * 关闭数据库连接
+     */
     public static void closeConnection(Connection conn, Statement stmt, ResultSet rs) {
         try {
             if (rs != null) {
