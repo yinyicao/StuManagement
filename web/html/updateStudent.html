@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加学生</title>
+    <script src="../jquery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../css/scrollbarui.css" media="all"/>
+    <style>
+        form {
+            padding-top: 20px;
+            padding-left: 0px;
+            margin-left: 0px;
+        }
+
+        .layui-form-item {
+            margin-left: -20px;
+            margin-right: 50px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="" lay-filter="updateStudent">
+    <div class="layui-form-item">
+        <label class="layui-form-label">学号</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentId" name="studentId" required lay-verify="required" placeholder="请输入学号"
+                   autocomplete="off" class="layui-input">
+            <div class="layui-form-mid layui-word-aux">学号不可更改</div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentName" name="studentName" required lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="radio" class="studentGender" name="studentGender" value="男" title="男">
+            <input type="radio" class="studentGender" name="studentGender" value="女" title="女">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">年龄</label>
+        <div class="layui-input-block">
+            <input type="number" id="studentAge" name="studentAge" required lay-verify="required" placeholder="请输入年龄"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">籍贯</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentHomeplace" name="studentHomeplace" required lay-verify="required"
+                   placeholder="请输入籍贯" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">入学成绩</label>
+        <div class="layui-input-block">
+            <input type="number" id="studentEnterScore" name="studentEnterScore" required lay-verify="required"
+                   placeholder="请输入入学成绩" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">政治面貌</label>
+        <div class="layui-input-block">
+            <input type="radio" name="studentPoliticalStatus" value="中共党员" title="中共党员">
+            <input type="radio" name="studentPoliticalStatus" value="预备党员" title="预备党员">
+            <input type="radio" name="studentPoliticalStatus" value="共青团员" title="共青团员">
+            <input type="radio" name="studentPoliticalStatus" value="群众" title="群众" checked>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">所在学院</label>
+        <div class="layui-input-block">
+            <select id="studentInstitute" name="studentInstitute" lay-verify="required">
+                <option value=""></option>
+                <option value="10001">应用技术学院</option>
+                <option value="10002">计算机学院</option>
+                <option value="10003">知识产权学院</option>
+                <option value="10004">汽车工程学院</option>
+                <option value="10005">机械工程学院</option>
+                <option value="10006">理学院</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="updateStu">立即更新</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script src="../layui/layui.js"></script>
+
+<script>
+    var form;
+    var layer;
+    layui.use('form', function () {
+        form = layui.form;
+        layer = layui.layer;
+
+    });
+
+    function updateStu() {
+        //监听提交
+        form.on('submit(updateStu)', function (data) {
+            // layer.msg(JSON.stringify(data.field));
+            var jsonstr = {"msg": "updateData", "data": [data.field]};
+            // alert(JSON.stringify(jsonstr))
+            $.ajax({
+                type: "POST",
+                url: "/operationServlet",
+                contentType: "application/json;charset=utf-8",//设置请求参数类型为json字符串
+                dataType: "json",
+                data: JSON.stringify(jsonstr),
+                success: function (data) {
+                    // console.log(data.code === 200)
+                    if (data.code === 200) {
+                        layer.msg(data.msg, {
+                            time: 1500
+                        }, function () {
+                            //当你在iframe页面关闭自身时关闭弹出层
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index); //再执行关闭
+
+                        })
+                    } else if (data.code === 500) {
+                        layer.msg(data.msg, {
+                            time: 1500
+                        })
+                    }
+
+                }
+
+            });
+            return false;
+        });
+    }
+
+    function updateTableRender() {
+        // 记得重新渲染表单
+        form.render(null, 'updateStudent');
+    }
+</script>
+
+
+</body>
+</html>

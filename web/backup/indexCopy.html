@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录-学生管理系统</title>
+    <script src="../jquery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+    <style>
+
+        body {
+            background: linear-gradient(to top right, #CDDC39 0%, #8BC34A 25%, #FFEB3B 100%);
+            /*background: radial-gradient(#80dcba 0%, #8ec383 25%, #ddff9d 100%);*/
+        }
+
+        input:focus {
+            border-style: solid;
+            border-color: #03a9f4;
+            box-shadow: 0 0 25px #03a9f4;
+        }
+
+        #mainDiv {
+            margin: 0 auto;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to top right, #CDDC39 0%, #8BC34A 25%, #FFEB3B 100%);
+        }
+
+        #title {
+            padding-bottom: 20px;
+            font-size: 48px;
+            text-shadow: 5px 5px 5px #edede0, 0px 0px 2px #ade5ff; /* 没错这里设置了两个 shadow*/
+            font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+            letter-spacing: 10px;
+        }
+
+        #title {
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            margin-left: -150px;
+            background-image: -webkit-linear-gradient(left, blue, #66ffff 10%, #cc00ff 20%, #CC00CC 30%, #CCCCFF 40%, #00FFFF 50%, #CCCCFF 60%, #CC00CC 70%, #CC00FF 80%, #66FFFF 90%, blue 100%);
+            -webkit-text-fill-color: transparent; /* 将字体设置成透明色 */
+            -webkit-background-clip: text; /* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
+            -webkit-background-size: 200% 100%;
+            -webkit-animation: masked-animation 4s linear infinite;
+            font-size: 35px;
+        }
+
+        #loginDiv {
+            margin: 0 auto;
+            border: 30px solid hsla(0, 0%, 90%, .5);
+            padding-top: 50px;
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(rgb(115, 190, 44) 20%, rgb(96, 196, 87) 60%, rgb(114, 108, 58) 100%);
+        }
+
+        .layui-form-label {
+            text-shadow: 0px 0px 2px red; /*没错这里设置了两个 shadow*/
+            font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+            text-space: 3px;
+        }
+
+        .layui-row {
+            width: 400px;
+        }
+
+        .layui-container {
+            width: 400px;
+        }
+
+        .layui-input {
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="mainDiv" style="padding-top: 10%" class="layui-form">
+    <div id="titleDiv" align="center">
+        <p id="title">学生管理系统</p>
+    </div>
+    <div id="loginDiv">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-md3">
+                    <label class="layui-form-label">*用户名：</label>
+                </div>
+                <div class="layui-col-md9">
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" id="username" placeholder="请输入登录名" autocomplete="off"
+                               lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            &nbsp;
+            <div class="layui-row">
+                <div class="layui-col-md3">
+                    <label class="layui-form-label">*密&nbsp;&nbsp;&nbsp;码：</label>
+                </div>
+                <div class="layui-col-md9">
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" id="password" placeholder="请输入密码" autocomplete="off"
+                               lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            &nbsp;
+            <div class="layui-row">
+                <div class="layui-col-md3">
+                    <label class="layui-form-label">*角色选择:</label>
+                </div>
+                <div class="layui-col-md9">
+                    <div class="layui-input-inline">
+                        <select id="role" name="role" lay-verify="required">
+                            <option value=""></option>
+                            <option value="0">普通用户</option>
+                            <option value="1">管理员</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            &nbsp;
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button id="submit" class="layui-btn">立即登录</button>
+                    <button id="cancel" type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../layui/layui.js"></script>
+<script>
+    //必须加载layui.form,如果不加载form模块，select、checkbox、radio等将无法显示，并且无法使用form相关功能
+    layui.use('form', function () {
+        var form = layui.form;
+
+        //各种基于事件的操作
+    });
+
+</script>
+<script src="indexJs.js"></script>
+</body>
+</html>

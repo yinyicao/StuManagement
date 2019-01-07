@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加学生</title>
+    <script src="../jquery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+    <style>
+        form {
+            padding-top: 20px;
+            padding-left: 0px;
+            margin-left: 0px;
+        }
+
+        .layui-form-item {
+            margin-left: -20px;
+            margin-right: 50px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">学号</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentId" required lay-verify="required" placeholder="学号" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentName" required lay-verify="required" placeholder="姓名" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentGender" required lay-verify="required" placeholder="性别" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">年龄</label>
+        <div class="layui-input-block">
+            <input type="number" id="studentAge" required lay-verify="required" placeholder="年龄" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">籍贯</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentHomeplace" required lay-verify="required" placeholder="籍贯" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">入学成绩</label>
+        <div class="layui-input-block">
+            <input type="number" id="studentEnterScore" required lay-verify="required" placeholder="入学成绩"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">政治面貌</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentPoliticalStatus" required lay-verify="required" placeholder="政治面貌"
+                   autocomplete="off" class="layui-input">
+
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">所在学院</label>
+        <div class="layui-input-block">
+            <input type="text" id="studentInstitute" required lay-verify="required" placeholder="所在学院"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">学院简介</label>
+        <div class="layui-input-block">
+            <textarea id="studentInstitureExplain" placeholder="学院简介" class="layui-textarea"></textarea>
+        </div>
+    </div>
+</form>
+<script src="../layui/layui.js"></script>
+
+<script>
+    //Demo
+    layui.use('form', function () {
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(addStu)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            var jsonstr = {"msg": "addData", "data": [data.field]};
+            $.ajax({
+                type: "POST",
+                url: "/operationServlet",
+                contentType: "application/json;charset=utf-8",//设置请求参数类型为json字符串
+                dataType: "json",
+                data: JSON.stringify(jsonstr)
+
+            });
+
+
+            return false;
+        });
+    });
+</script>
+
+
+</body>
+</html>

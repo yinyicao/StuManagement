@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学生管理系统-主页</title>
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="css/scrollbarui.css" media="all"/>
+
+    <style>
+
+        #topDiv {
+            padding-top: 5px;
+            margin-left: -100px;
+        }
+
+        #logoutDiv {
+            position: absolute;
+            right: 0px;
+            top: 5px;
+            width: 220px;
+        }
+
+        .layui-form-item {
+            margin: 0;
+            border: 0;
+            padding: 0;
+            width: 100px;
+            display: inline-block;
+        }
+
+        .layui-input-block {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="topDiv">
+    <div class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <select id="searchIndex" name="searchIndex" lay-verify="required">
+                    <option value="">索引</option>
+                    <option value="0">学号</option>
+                    <option value="1">姓名</option>
+                    <option value="2">籍贯</option>
+                    <option value="3">学院</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item" style="width: 200px">
+            <div class="layui-input-block" style="width: 200px">
+                <input type="text" id="searchContent" name="searchContent" required lay-verify="required"
+                       placeholder="请输入内容(支持模糊查询)" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <!--<button class="layui-btn" id="search" lay-submit lay-filter="search">搜索</button>-->
+                <button class="layui-btn" id="search">搜索</button>
+            </div>
+        </div>
+        <div id="logoutDiv" class="layui-form-item">
+            <div class="layui-input-block">
+                <!--<button class="layui-btn" id="search" lay-submit lay-filter="search">搜索</button>-->
+                <button class="layui-btn" id="logout">退出登录</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div>
+    <table id="dataTable" lay-filter="allData">
+    </table>
+</div>
+
+<!--<input id="logout" type="button"  value="注销">-->
+
+<script src="layui/layui.js"></script>
+<script src="js/SearchListenerJs.js"></script>
+<script src="js/TableInitJs.js"></script>
+<script src="js/TableListenerJs.js"></script>
+<script src="js/mainJs.js"></script>
+</body>
+</html>

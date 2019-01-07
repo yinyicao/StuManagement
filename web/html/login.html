@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="../jquery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+    <style>
+        form {
+            padding-top: 20px;
+            padding-left: 0px;
+            margin-left: 0px;
+        }
+
+        input:focus {
+            border-style: solid;
+            box-shadow: 0 0 20px #03a9f4;
+        }
+
+        .layui-form-item {
+            margin-left: 0px;
+            margin-right: 80px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input type="text" id="username" name="" lay-verType="msg" lay-verif="username" placeholder="请输入"
+                   autocomplete="on" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="password" id="password" name="" lay-verType="msg" lay-verif="password" placeholder="请输入"
+                   autocomplete="on" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="login">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script src="../layui/layui.js"></script>
+<script>
+
+    var form;
+    var layer;
+    layui.use('form', function () {
+        form = layui.form;
+        layer = layui.layer;
+
+    });
+
+    function login(location) {
+        //监听提交
+        form.on('submit(login)', function (data) {
+            if ($('#username').val() == "" || $('#password').val() == "") {
+                layer.msg("用户名和密码不能为空！", {
+                    icon: 7,
+                    time: 2000
+                })
+            } else {
+                var jsonstr = {"msg": "updateData", "data": [data.field]};
+                // alert(JSON.stringify(jsonstr))
+                $.ajax({
+                    type: "POST",
+                    url: "/loginServlet",
+                    data: {
+                        username: $('#username').val(),
+                        password: $('#password').val(),
+                        // role:$('#role').val()
+                        role: 0,
+                    },
+                    success: function (data) {
+                        var json = JSON.parse(data);
+                        if (json.code === "1") {
+                            layer.msg(json.msg, {
+                                icon: 1,
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function () {
+                                $(location).attr('href', '/main.html');
+                            });
+
+                        } else if (json.code === "2") {
+                            layer.msg(json.msg, {
+                                icon: 2,
+                                time: 2000
+                            })
+                        }
+
+                    },
+
+                });
+            }
+            return false;
+        });
+    }
+
+</script>
+</body>
+</html>
