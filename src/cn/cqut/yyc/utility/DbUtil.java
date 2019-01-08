@@ -1,6 +1,5 @@
 package cn.cqut.yyc.utility;
 
-import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
