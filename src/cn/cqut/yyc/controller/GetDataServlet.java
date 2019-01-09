@@ -5,8 +5,6 @@ import cn.cqut.yyc.service.impl.StudentServiceImpl;
 import cn.cqut.yyc.utility.StringUtil;
 import cn.cqut.yyc.vo.DataInfoVo;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
