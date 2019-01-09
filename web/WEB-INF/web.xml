@@ -7,12 +7,18 @@
         <filter-name>LoginFilter</filter-name>
         <filter-class>cn.cqut.yyc.filter.LoginFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>cn.cqut.yyc.filter.CorsFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/main.html</url-pattern>
         <url-pattern>/html/addStudent.html</url-pattern>
         <url-pattern>/html/updateStudent.html</url-pattern>
         <url-pattern>/html/viewStudent.html</url-pattern>
+        <url-pattern>/getDataServlet</url-pattern>
+        <url-pattern>/operationServlet</url-pattern>
         <!--filter只会过滤上述路径的内容：也就是说你请求上述资源都会被过滤器拦截进行验证-->
         <!--1.以”/’开头和以”/*”结尾的是用来做路径映射的
             2.以前缀”*.”开头的是用来做扩展映射的,如*.html。
@@ -20,6 +26,10 @@
             4.剩下的都是用来定义详细映射的。比如： /aa/bb/cc.action
             不能是属于路径映射，也属于扩展映射，否则会导致容器无法判断，如/admin/*.html”。
         -->
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <servlet>
