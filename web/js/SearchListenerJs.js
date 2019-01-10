@@ -18,7 +18,10 @@ $().ready(function () {
                 var isClickSearchButton = 1;
                 table.reload('dataTable', { //重新加载表格
                     url: '/getDataServlet'
-                    , where: {} //设定异步数据接口的额外参数，
+                    , where: {
+                        searchIndex: "",
+                        searchContent: ""
+                    } //设定异步数据接口的额外参数，
                     //,height: 300
                     , done: function (res, curr, count) {
                         //如果是异步请求数据方式，res即为你接口返回的信息。

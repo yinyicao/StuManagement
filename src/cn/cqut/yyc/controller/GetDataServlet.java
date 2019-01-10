@@ -44,7 +44,7 @@ public class GetDataServlet extends HttpServlet {
         System.out.println("page=" + page + "limit=" + limit + "searchIndex=" + searchIndexStr + "searchContent=" + searchContent);
 
         //不是点击搜索按钮触发的事件,只做分页查询即可
-        if (null == searchIndexStr) {
+        if (null == searchIndexStr || "".equals(searchIndexStr)) {
             outputAllStuWithPageLimit(out, page, limit);
         } else { //是点击搜索按钮触发的事件,做分页查询并做搜索查询
             Integer searchIndex = Integer.parseInt(searchIndexStr);
