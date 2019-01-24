@@ -23,7 +23,7 @@ public class UserDao {
 
         try {
             conn = DbUtil.getConnection();
-            String sql = "select * from Table_User where username=? and password=?  and userRole=?";
+            String sql = "select * from table_user where username=? and password=?  and userRole=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, name);
             ps.setString(2, pwd);
